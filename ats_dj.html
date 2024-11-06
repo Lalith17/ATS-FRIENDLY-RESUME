@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Analyzer</title>
+    <link rel="stylesheet" href="{% static 'ats.css' %}">  
+</head>
+<body>
+    
+    <div class="container">
+        <h1>ATS Analyzer</h1>
+        <form id="ats-form" method="post" enctype="multipart/form-data">  {# Specify method and enctype for file upload #}
+            
+            <label for="job-description">Job Description:</label><br>
+            <textarea id="job-description" name="job-description" rows="4" cols="50"></textarea><br>
+            <label for="resume">Upload Resume:</label><br>
+
+            <!-- Area for selecting or dropping files -->
+            <div id="file-upload-container" onclick="document.getElementById('resume').click()">
+                <input type="file" id="resume" name="resume" accept=".pdf" onchange="showSelectedFile(this)">
+                <p>Click to Select / Change file</p>
+            </div>
+            <p id="file-path"></p> <!-- Display the file name here -->
+            <button type="submit">Analyze</button>
+        </form>
+        <div id="result" class="hidden">
+            <h2>Analysis Result</h2>
+            <p id="match-percentage"></p>
+            <p id="missing-keywords"></p>
+            <p id="profile-summary"></p>
+        </div>
+    </div>
+    <script src="{% static 'ats.js' %}"></script>  
+</body>
+</html>
